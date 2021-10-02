@@ -20,9 +20,10 @@ exports.create_comment = async (req, res) => {
     }
 }
 
-exports.getall_comment = async (req, res) => {
+exports.get_comment = async (req, res) => {
     try {
-
+        const comments = await Comment.find({ todo_id: req.params.id });
+        res.status(200).json(comments);
     } catch (err) {
         console.log(err);
         res.status(500).json({err});
@@ -31,7 +32,10 @@ exports.getall_comment = async (req, res) => {
 
 exports.update_comment = async (req, res) => {
     try {
-
+        const comment = await Comment.findByIdAndUpdate(req.params.id,{
+            $set: req.body,
+        },{new:true});
+        res.status(200).json(comment);
     } catch (err) {
         console.log(err);
         res.status(500).json({err});
@@ -40,7 +44,8 @@ exports.update_comment = async (req, res) => {
 
 exports.delete_comment = async (req, res) => {
     try {
-
+        await Comment.findByIdAndDelete(req.params.id);
+        res.status(200).json("Comment has been deleted");
     } catch (err) {
         console.log(err);
         res.status(500).json({err});

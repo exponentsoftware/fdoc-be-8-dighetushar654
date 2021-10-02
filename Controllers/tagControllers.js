@@ -21,8 +21,10 @@ exports.create_tag = async (req, res) => {
     }
 }
 
-exports.getall_tags = async (req, res) => {
+exports.get_tags = async (req, res) => {
     try {
+        const tag = await Tag.find({ todo_id: req.params.id });
+        res.status(200).json(tag);
 
     } catch (err) {
         console.log(err);
@@ -32,6 +34,10 @@ exports.getall_tags = async (req, res) => {
 
 exports.update_tags = async (req, res) => {
     try {
+        const tag = await Tag.findByIdAndUpdate(req.params.id,{
+            $set: req.body,
+        },{new:true});
+        res.status(200).json(tag);
 
     } catch (err) {
         console.log(err);
@@ -41,6 +47,8 @@ exports.update_tags = async (req, res) => {
 
 exports.delete_tag = async (req, res) => {
     try {
+        await Tag.findByIdAndDelete(req.params.id);
+        res.status(200).json("Tag has been deleted");
 
     } catch (err) {
         console.log(err);
