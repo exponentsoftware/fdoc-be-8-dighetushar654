@@ -9,9 +9,9 @@ const commentModel = new mongoose.Schema({
         ref: "users"
     },
     todo_id:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"todos"
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "todos"
     }
 })
 
-module.exports = mongoose.model('comments', commentModel);
+module.exports = mongoose.model('Comment', commentModel);

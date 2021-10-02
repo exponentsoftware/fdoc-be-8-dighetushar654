@@ -11,10 +11,10 @@ const tagsModel = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"users"
     },
-    todo_id:[{
+    todo_id:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"todos"
-    }]
+    }
 })
 
-module.exports = mongoose.model('tags', commentModel);
+module.exports = mongoose.model('tags', tagsModel);

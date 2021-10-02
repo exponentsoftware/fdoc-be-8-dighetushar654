@@ -1,18 +1,19 @@
-const Comment = require('../Models/commModel');
+const Tag = require('../Models/tagsModel');
 const jwt = require("jsonwebtoken");
 const User = require("../Models/userModel");
 
 
-exports.create_comment = async (req, res) => {
+exports.create_tag = async (req, res) => {
     try {
-        const {text, todo_id} = req.body;
-        const newComment = new Comment({
-            text,
-            todo_id,
-            posted_by: req.user.id,
+        const {title, category, todo_id} = req.body;
+        const newTag = new Tag({
+            title,
+            category,
+            user:req.user.id,
+            todo_id: todo_id,
         });
-        const newcom = await newComment.save();
-        res.status(200).json(newcom);
+        const newtag = await newTag.save();
+        res.status(200).json(newtag);
 
     } catch (err) {
         console.log(err);
@@ -20,7 +21,7 @@ exports.create_comment = async (req, res) => {
     }
 }
 
-exports.getall_comment = async (req, res) => {
+exports.getall_tags = async (req, res) => {
     try {
 
     } catch (err) {
@@ -29,7 +30,7 @@ exports.getall_comment = async (req, res) => {
     }
 }
 
-exports.update_comment = async (req, res) => {
+exports.update_tags = async (req, res) => {
     try {
 
     } catch (err) {
@@ -38,7 +39,7 @@ exports.update_comment = async (req, res) => {
     }
 }
 
-exports.delete_comment = async (req, res) => {
+exports.delete_tag = async (req, res) => {
     try {
 
     } catch (err) {

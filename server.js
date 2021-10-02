@@ -12,6 +12,7 @@ const userRoute = require('./Routes/user');
 const authRoute = require('./Routes/auth');
 const likeRoute = require("./Routes/likeshare");
 const commRoute = require("./Routes/comment");
+const tagsRoute = require("./Routes/tags");
 
 // App Config...
 const app = express();                  // instanciating express() in app variable
@@ -33,6 +34,8 @@ app.use("/users", userRoute);
 app.use("/auth", authRoute);
 app.use("/likeshare", likeRoute);
 app.use("/comments", commRoute);
+app.use("/tags", tagsRoute);
+
 
 
 // DB Config
